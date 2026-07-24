@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexo Love AI | Música Personalizada com IA a partir de R$9,99</title>
+  <meta name="description" content="Crie uma música personalizada com IA a partir de R$9,99. Você manda a história e recebe uma canção pronta para emocionar quem você ama.">
+  <link rel="canonical" href="https://nexoai.app.br/">
+  <meta property="og:title" content="Nexo Love AI | Música Personalizada com IA por R$9,99">
+  <meta property="og:description" content="Transforme a história de vocês em uma música exclusiva com IA. Presente inesquecível por um preço acessível.">
+  <meta property="og:url" content="https://nexoai.app.br/">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f1f5f9;
+      --ink-bright: #ffffff;
+      --muted: #94a3b8;
+      --paper: #020617;
+      --cream: #07111f;
+      --ivory: #0c1525;
+      --rose: #c084fc;
+      --wine: #a855f7;
+      --wine-deep: #7c3aed;
+      --teal: #22d3ee;
+      --teal-deep: #06b6d4;
+      --gold: #fbbf24;
+      --green: #34d399;
+      --red-soft: #f87171;
+      --line: rgba(148, 163, 184, 0.12);
+      --line-bright: rgba(148, 163, 184, 0.22);
+      --glow-teal: rgba(34, 211, 238, 0.25);
+      --glow-purple: rgba(124, 58, 237, 0.2);
+      --shadow: 0 24px 70px rgba(34, 211, 238, 0.12), 0 12px 42px rgba(124, 58, 237, 0.12);
+      --shadow-lg: 0 32px 80px rgba(34, 211, 238, 0.18), 0 16px 48px rgba(124, 58, 237, 0.16);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --transition: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Outfit', 'Inter', sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px var(--glow-teal), 0 0 40px var(--glow-purple); }
+      50% { box-shadow: 0 0 30px var(--glow-teal), 0 0 60px var(--glow-purple), 0 0 80px rgba(34, 211, 238, 0.1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-12px) rotate(3deg); }
+      66% { transform: translateY(-6px) rotate(-2deg); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes wave-move {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.6); }
+    }
+
+    @keyframes count-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.7s ease-out both;
+    }
+
+    .animate-in-delay-1 { animation-delay: 0.1s; }
+    .animate-in-delay-2 { animation-delay: 0.2s; }
+    .animate-in-delay-3 { animation-delay: 0.3s; }
+    .animate-in-delay-4 { animation-delay: 0.4s; }
+
+    /* ========== URGENCY BAR ========== */
+    .urgency-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, #7c3aed, #0891b2, #7c3aed);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .urgency-bar strong {
+      color: var(--gold);
+    }
+
+    /* ========== TOPBAR ========== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px clamp(18px, 4vw, 52px);
+      background: rgba(2, 6, 23, 0.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .brand-mark-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 0 18px var(--glow-teal);
+    }
+
+
+    .brand span {
+      background: linear-gradient(135deg, var(--ink-bright), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav a {
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav a:hover {
+      color: var(--teal);
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 2px;
+      transition: width var(--transition);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--teal-deep), var(--wine-deep));
+      box-shadow: 0 4px 18px var(--glow-teal), 0 4px 24px var(--glow-purple);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 28px var(--glow-teal), 0 8px 36px var(--glow-purple);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary-lg {
+      min-height: 58px;
+      padding: 0 32px;
+      font-size: 1.05rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .btn-secondary {
+      color: var(--teal);
+      background: rgba(15, 23, 42, 0.6);
+      border-color: var(--line-bright);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      background: rgba(34, 211, 238, 0.08);
+    }
+
+    .btn-whatsapp {
+      color: white;
+      background: #25D366;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #20bd5a;
+      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(34px, 5vw, 78px);
+      align-items: center;
+      min-height: calc(100vh - 110px);
+      padding: clamp(40px, 6vw, 88px) clamp(18px, 4vw, 52px) 48px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(34, 211, 238, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.12), transparent 45%),
+        radial-gradient(ellipse at 50% 80%, rgba(124, 58, 237, 0.08), transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      position: relative;
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 999px;
+      color: var(--teal);
+      background: rgba(34, 211, 238, 0.06);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse-glow 2s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--ink-bright);
+    }
+
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--teal), var(--rose));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 580px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .trust-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .trust-row .check-icon {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    /* ========== HERO VISUAL ========== */
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(34, 211, 238, 0.12), rgba(168, 85, 247, 0.06)),
+        linear-gradient(135deg, #07111f, #111827 42%, #2e1065);
+      z-index: 0;
+    }
+
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(to top, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.15) 50%),
+        radial-gradient(circle at 50% 35%, rgba(34, 211, 238, 0.14), transparent 40%),
+        radial-gradient(circle at 30% 60%, rgba(168, 85, 247, 0.1), transparent 35%),
+        linear-gradient(135deg, #020617, #111827 50%, #2e1065);
+    }
+
+    .floating-note {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      color: white;
+      backdrop-filter: blur(14px);
+      font-size: 1.4rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-note.one {
+      top: 30px;
+      right: 32px;
+      background: rgba(124, 58, 237, 0.5);
+      animation-delay: 0s;
+    }
+
+    .floating-note.two {
+      top: 110px;
+      left: 28px;
+      background: rgba(6, 182, 212, 0.5);
+      animation-delay: 1.5s;
+    }
+
+    .floating-note.three {
+      bottom: 140px;
+      right: 60px;
+      width: 40px;
+      height: 40px;
+      background: rgba(250, 204, 37, 0.35);
+      font-size: 1.1rem;
+      animation-delay: 0.8s;
+    }
+
+    .mini-proof {
+      position: absolute;
+      z-index: 3;
+      top: 30px;
+      left: 88px;
+      right: 88px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      color: white;
+      background: rgba(2, 6, 23, 0.65);
+      backdrop-filter: blur(16px);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Player */
+    .player {
+      position: absolute;
+      z-index: 3;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: white;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(20px);
+    }
+
+    .player-top {
+      display: grid;
+      grid-template-columns: 54px 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cover {
+      width: 54px;
+      height: 54px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--wine-deep));
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+    }
+
+    .song-title {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .song-meta {
+      display: block;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.82rem;
+      margin-top: 2px;
+    }
+
+    .play-btn {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--wine));
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px var(--glow-teal);
+    }
+
+    .play-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px var(--glow-teal);
+    }
+
+    .wave {
+      display: flex;
+      align-items: end;
+      gap: 3px;
+      height: 36px;
+      margin-top: 14px;
+    }
+
+    .wave i {
+      flex: 1;
+      min-width: 3px;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(to top, var(--teal), var(--rose));
+      opacity: 0.7;
+      animation: wave-move 1.2s ease-in-out infinite;
+    }
+
+    .wave i:nth-child(1) { height: 28%; animation-delay: 0s; }
+    .wave i:nth-child(2) { height: 52%; animation-delay: 0.1s; }
+    .wave i:nth-child(3) { height: 78%; animation-delay: 0.2s; }
+    .wave i:nth-child(4) { height: 44%; animation-delay: 0.3s; }
+    .wave i:nth-child(5) { height: 90%; animation-delay: 0.15s; }
+    .wave i:nth-child(6) { height: 58%; animation-delay: 0.25s; }
+    .wave i:nth-child(7) { height: 36%; animation-delay: 0.35s; }
+    .wave i:nth-child(8) { height: 72%; animation-delay: 0.05s; }
+    .wave i:nth-child(9) { height: 94%; animation-delay: 0.2s; }
+    .wave i:nth-child(10) { height: 50%; animation-delay: 0.3s; }
+    .wave i:nth-child(11) { height: 66%; animation-delay: 0.1s; }
+    .wave i:nth-child(12) { height: 40%; animation-delay: 0.25s; }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: clamp(60px, 8vw, 100px) clamp(18px, 4vw, 52px);
+    }
+
+    .section-inner {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink-bright);
+    }
+
+    .section-head p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* ========== PREMIUM STATS ========== */
+    .premium-strip {
+      margin-top: -28px;
+      padding-top: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .premium-panel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line-bright);
+      border-radius: var(--radius-lg);
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .premium-stat {
+      padding: 24px;
+      background: var(--ivory);
+      transition: background var(--transition);
+    }
+
+    .premium-stat:hover {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .premium-stat b {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--teal), var(--wine));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .premium-stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ========== VSL SECTION ========== */
+    .vsl-section {
+      padding-top: clamp(50px, 6vw, 80px);
+      background: linear-gradient(180deg, var(--paper) 0%, #07111f 100%);
+      position: relative;
+    }
+
+    .vsl-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+    }
+
+    .vsl-copy h2 {
+      max-width: 580px;
+    }
+
+    .vsl-copy p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .vsl-points {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+      font-weight: 700;
+    }
+
+    .vsl-points li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .vsl-points .li-check {
+      color: var(--teal);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .vsl-box {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(34, 211, 238, 0.15);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, rgba(34, 211, 238, 0.7), rgba(124, 58, 237, 0.65)),
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.12), transparent 40%),
+        var(--paper);
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .vsl-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 36px 90px rgba(34, 211, 238, 0.2), 0 20px 50px rgba(124, 58, 237, 0.18);
+    }
+
+    .vsl-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      text-align: center;
+      color: white;
+    }
+
+    .vsl-play {
+      display: grid;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--wine-deep);
+      background: rgba(255, 255, 255, 0.95);
+      font-size: 1.4rem;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+      transition: all var(--transition);
+    }
+
+    .vsl-box:hover .vsl-play {
+      transform: scale(1.1);
+    }
+
+    .vsl-placeholder strong {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      line-height: 1.12;
+    }
+
+    .vsl-placeholder small {
+      display: block;
+      max-width: 480px;
+      margin: 10px auto 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* ========== CARDS ========== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--wine));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-bright);
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.4);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card.featured {
+      color: white;
+      background: linear-gradient(145deg, rgba(34, 211, 238, 0.85), rgba(124, 58, 237, 0.8));
+      border-color: transparent;
+      box-shadow: var(--shadow);
+    }
+
+    .card.featured::before {
+      opacity: 0;
+    }
+
+    .card-step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--teal);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .card.featured .card-step {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--ink-bright);
+      font-size: 1.08rem;
+    }
+
+    .card.featured strong {
+      color: white;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .card.featured p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ========== EXAMPLES ========== */
+    .examples {
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(34, 211, 238, 0.06), transparent 40%),
+        #050b18;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .example-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .example {
+      min-height: 170px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .example::after {
+      content: '→';
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all var(--transition);
+    }
+
+    .example:hover::after {
+      opacity: 0.7;
+      transform: translateX(0);
+    }
+
+    .example:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .example:nth-child(1) { background: linear-gradient(135deg, #0891b2, #7c3aed); }
+    .example:nth-child(2) { background: linear-gradient(135deg, #0d9488, #1e40af); }
+    .example:nth-child(3) { background: linear-gradient(135deg, #7c2d12, #eab308); }
+    .example:nth-child(4) { background: linear-gradient(135deg, #4c1d95, #ec4899); }
+
+    .example span {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .example b {
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    /* ========== PLANS ========== */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .plan {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition);
+    }
+
+    .plan:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-bright);
+    }
+
+    .plan.best {
+      color: white;
+      background: linear-gradient(145deg, #0891b2, #6d28d9);
+      transform: translateY(-10px);
+      border-color: transparent;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan.best:hover {
+      transform: translateY(-14px);
+    }
+
+    .plan-tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .plan .plan-tag {
+      color: var(--teal);
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.15);
+    }
+
+    .plan.best .plan-tag {
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .plan h3 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .plan-price {
+      margin: 12px 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .plan .plan-price {
+      background: linear-gradient(135deg, var(--teal), var(--wine));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .plan.best .plan-price {
+      color: white;
+      -webkit-text-fill-color: white;
+      background: none;
+    }
+
+    .plan p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .plan.best p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .plan-features {
+      margin-top: 16px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .plan-features li {
+      display: flex;
+      gap: 8px;
+      align-items: start;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .plan.best .plan-features li {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .plan-features .feat-check {
+      color: var(--green);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .plan.best .plan-features .feat-check {
+      color: var(--gold);
+    }
+
+    /* ========== OFFER / FORM ========== */
+    .offer {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .price-box {
+      position: sticky;
+      top: 80px;
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      color: white;
+      background:
+        linear-gradient(145deg, rgba(2, 6, 23, 0.95), rgba(23, 37, 84, 0.9) 44%, rgba(76, 29, 149, 0.85)),
+        var(--paper);
+      border: 1px solid rgba(34, 211, 238, 0.12);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .price {
+      margin: 18px 0 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.6rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .price small {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .price-original {
+      color: var(--red-soft);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.92rem;
+    }
+
+    .check-list .cl-check {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .guarantee-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.15);
+    }
+
+    .guarantee-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--green);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .guarantee-text {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.4;
+    }
+
+    .guarantee-text strong {
+      color: var(--green);
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
+
+    .briefing {
+      padding: 32px;
+      border: 1px solid var(--line-bright);
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 45px rgba(2, 6, 23, 0.3);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--line-bright);
+      border-radius: 10px;
+      color: var(--ink);
+      background: rgba(2, 6, 23, 0.8);
+      outline: none;
+      transition: all var(--transition);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(148, 163, 184, 0.5);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .form-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .form-security {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .form-security span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .form-security .sec-icon {
+      color: var(--green);
+    }
+
+    /* ========== PROOF / TESTIMONIALS ========== */
+    .proof {
+      background:
+        radial-gradient(ellipse at 12% 20%, rgba(34, 211, 238, 0.08), transparent 35%),
+        radial-gradient(ellipse at 88% 30%, rgba(168, 85, 247, 0.1), transparent 35%),
+        linear-gradient(180deg, #07111f, var(--paper));
+    }
+
+    .quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    blockquote:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-bright);
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.3);
+    }
+
+    .testimonial-head {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 20px 20px 0;
+    }
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar-f {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    }
+
+    .avatar-m {
+      background: linear-gradient(135deg, var(--teal), #3b82f6);
+    }
+
+    .who {
+      display: block;
+      font-weight: 800;
+      color: var(--ink-bright);
+    }
+
+    .who-detail {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .stars {
+      display: block;
+      color: var(--gold);
+      font-size: 0.88rem;
+      letter-spacing: 2px;
+    }
+
+    blockquote p {
+      margin: 0;
+      padding: 16px 20px 0;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    blockquote footer {
+      margin-top: 0;
+      padding: 12px 20px 18px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ========== FAQ ========== */
+    .faq {
+      display: grid;
+      gap: 10px;
+      max-width: 800px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      transition: all var(--transition);
+    }
+
+    details:hover {
+      border-color: var(--line-bright);
+    }
+
+    details[open] {
+      border-color: rgba(34, 211, 238, 0.2);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    summary {
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--ink-bright);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--teal);
+      font-weight: 700;
+      transition: transform var(--transition);
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    details p {
+      margin: 0;
+      padding: 0 22px 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ========== CTA FINAL ========== */
+    .cta-final {
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(34, 211, 238, 0.1), transparent 45%),
+        var(--paper);
+      border-top: 1px solid var(--line);
+    }
+
+    .cta-final h2 {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-final p {
+      max-width: 480px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .cta-final .hero-actions {
+      justify-content: center;
+    }
+
+    .cta-countdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(248, 113, 113, 0.08);
+      border: 1px solid rgba(248, 113, 113, 0.15);
+      color: var(--red-soft);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .cta-countdown .countdown-timer {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      animation: count-pulse 2s ease-in-out infinite;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 32px clamp(18px, 4vw, 52px);
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      width: min(1160px, 100%);
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    /* ========== FLOATING WHATSAPP ========== */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+      transition: all var(--transition);
+      text-decoration: none;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .float-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
+    }
+
+    .float-whatsapp-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: pulse-glow 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 920px) {
+      .nav { display: none; }
+      .hero, .offer, .vsl-wrap { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-visual { min-height: 420px; }
+      .grid-3, .premium-panel, .plans, .quotes { grid-template-columns: 1fr; }
+      .example-list { grid-template-columns: repeat(2, 1fr); }
+      .price-box { position: static; }
+      .plan.best { transform: none; }
+      .plan.best:hover { transform: translateY(-4px); }
+      .section-head.center { text-align: left; }
+    }
+
+    @media (max-width: 620px) {
+      .topbar { padding: 10px 16px; }
+      .topbar .btn { display: none; }
+      .urgency-bar { font-size: 0.78rem; padding: 8px 12px; }
+      .hero-actions .btn, .briefing .btn { width: 100%; }
+      .form-grid, .example-list { grid-template-columns: 1fr; }
+      .mini-proof { left: 60px; right: 60px; font-size: 0.74rem; }
+      .player-top { grid-template-columns: 44px 1fr 38px; }
+      .cover { width: 44px; height: 44px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .form-security { flex-direction: column; gap: 6px; }
+      .guarantee-badge { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    🛡️ <strong>OFERTA RISCO ZERO:</strong> Receba a prévia com a história de vocês primeiro. <strong>Você ouve e SÓ PAGA se aprovar!</strong>
+  </div>
+
+  <main class="page">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Nexo Love AI">
+        <img class="brand-mark-img" src="nexo-logo.jpg" alt="Nexo Love AI Logo">
+        <span>Nexo Love AI</span>
+      </a>
+      <nav class="nav" aria-label="Navegação">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#exemplos">Ocasiões</a>
+        <a href="#planos">Planos</a>
+        <a href="#pedido">Criar música</a>
+      </nav>
+      <a class="btn btn-primary" href="#pedido">🎵 Ouvir Prévia Grátis</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-copy animate-in">
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Garantia Total · Só pague se amar
+        </span>
+        <h1>Transforme a história de vocês em uma <em>música inesquecível.</em></h1>
+        <p class="lead">Uma canção com nomes, lembranças e detalhes reais. Você manda a história, nós criamos a prévia e você <strong>só paga após ouvir e aprovar o resultado!</strong></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-primary-lg" href="#pedido">🎧 Pedir minha prévia sem risco</a>
+          <a class="btn btn-secondary" href="#como-funciona">Ver como funciona</a>
+        </div>
+        <div class="trust-row">
+          <span><span class="check-icon">🛡️</span> Só pague após ouvir</span>
+          <span><span class="check-icon">✓</span> Entrega em até 24h</span>
+          <span><span class="check-icon">✓</span> +320 músicas criadas</span>
+        </div>
+      </div>
+
+      <div class="hero-visual animate-in animate-in-delay-2" aria-label="Prévia visual de uma música personalizada">
+        <div class="hero-photo"></div>
+        <div class="mini-proof">🎶 Mais que uma música: uma lembrança com nome, história e emoção real.</div>
+        <div class="floating-note one">♪</div>
+        <div class="floating-note two">♫</div>
+        <div class="floating-note three">♩</div>
+        <div class="player">
+          <div class="player-top">
+            <div class="cover" aria-hidden="true">🎵</div>
+            <div>
+              <span class="song-title">Nossa História — Ana & Pedro</span>
+              <span class="song-meta">Sertanejo romântico · voz masculina</span>
+            </div>
+            <div class="play-btn" aria-hidden="true">▶</div>
+          </div>
+          <div class="wave" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM STATS -->
+    <section class="premium-strip" aria-label="Destaques">
+      <div class="section-inner">
+        <div class="premium-panel">
+          <div class="premium-stat">
+            <b>24h</b>
+            <span>Prazo combinado para receber sua surpresa</span>
+          </div>
+          <div class="premium-stat">
+            <b>6+</b>
+            <span>Estilos musicais para cada ocasião</span>
+          </div>
+          <div class="premium-stat">
+            <b>R$9,99</b>
+            <span>Prévia para testar a ideia sem risco</span>
+          </div>
+          <div class="premium-stat">
+            <b>100%</b>
+            <span>Personalizada com seus detalhes reais</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VSL -->
+    <section class="vsl-section" id="vsl">
+      <div class="section-inner vsl-wrap">
+        <div class="vsl-copy">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Assista antes de pedir
+          </span>
+          <h2>Veja como uma história simples vira o presente mais emocionante que alguém já recebeu.</h2>
+          <p>Nomes, apelidos, datas e lembranças reais entram na composição. O resultado é uma canção que só existe no mundo para vocês dois.</p>
+          <ul class="vsl-points">
+            <li><span class="li-check">✓</span><span>Você conta a história e escolhe o estilo musical.</span></li>
+            <li><span class="li-check">✓</span><span>A letra e o áudio são criados com IA e revisados antes da entrega.</span></li>
+            <li><span class="li-check">✓</span><span>Receba no WhatsApp para surpreender no momento certo.</span></li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#pedido">🎵 Criar minha música</a>
+            <a class="btn btn-secondary" href="#exemplos">Ver ocasiões</a>
+          </div>
+        </div>
+        <div class="vsl-box" aria-label="Espaço da VSL">
+          <div class="vsl-placeholder">
+            <div>
+              <div class="vsl-play">▶</div>
+              <strong>Ouvir uma música com a própria história muda tudo</strong>
+              <small>Veja o processo completo e escute um exemplo real de música personalizada.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona">
+      <div class="section-inner">
+        <div class="section-head center">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Simples e rápido
+          </span>
+          <h2>Uma experiência de presente, não apenas um arquivo de áudio.</h2>
+          <p>Você não precisa saber compor. Basta contar a história, escolher o estilo e receber a surpresa digital pronta para enviar.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-step">1</div>
+            <strong>Conte a história de vocês</strong>
+            <p>Informe nomes, lembranças, data especial, estilo musical e detalhes que só vocês conhecem. Quanto mais detalhes, mais emocionante fica.</p>
+          </article>
+          <article class="card featured">
+            <div class="card-step">2</div>
+            <strong>A música é criada com IA</strong>
+            <p>A letra e o áudio são produzidos com IA em conta com permissão comercial e revisados antes da entrega. Qualidade profissional garantida.</p>
+          </article>
+          <article class="card">
+            <div class="card-step">3</div>
+            <strong>Entregue a surpresa</strong>
+            <p>Receba o áudio, a letra e uma capa personalizada para enviar por WhatsApp ou tocar ao vivo no momento perfeito.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXEMPLOS / OCASIÕES COM ÁUDIOS REAIS -->
+    <section class="examples" id="exemplos">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Ouça as demonstrações
+          </span>
+          <h2>Ouça o resultado dos nossos estilos musicais.</h2>
+          <p>Clique no play para ouvir trechos de músicas reais criadas com IA para cada ocasião especial.</p>
+        </div>
+        <div class="example-list">
+          <div class="example audio-card" data-src="audios/Sertanejo Romântico (Voz Masculina).mp3">
+            <div>
+              <span>Aniversário de namoro</span>
+              <b>Sertanejo Romântico</b>
+              <p style="font-size:0.8rem; opacity:0.8; margin-top:4px;">Voz Masculina · Emoção e sanfona</p>
+            </div>
+            <button class="card-play-btn" aria-label="Ouvir Sertanejo Romântico">▶ Ouvir Amostra</button>
+          </div>
+          <div class="example audio-card" data-src="audios/🥁 Pagode Romântico (Voz Masculina).mp3">
+            <div>
+              <span>Pedido de casamento</span>
+              <b>Pagode Romântico</b>
+              <p style="font-size:0.8rem; opacity:0.8; margin-top:4px;">Voz Masculina · Cavaquinho e ritmo</p>
+            </div>
+            <button class="card-play-btn" aria-label="Ouvir Pagode Romântico">▶ Ouvir Amostra</button>
+          </div>
+          <div class="example audio-card" data-src="audios/🎸 MPB Pop Leve (Voz Feminina.mp3">
+            <div>
+              <span>Presente para esposa</span>
+              <b>MPB / Pop Leve</b>
+              <p style="font-size:0.8rem; opacity:0.8; margin-top:4px;">Voz Feminina · Acústico intimista</p>
+            </div>
+            <button class="card-play-btn" aria-label="Ouvir MPB Pop Leve">▶ Ouvir Amostra</button>
+          </div>
+          <div class="example audio-card" data-src="audios/Gospel Romântico Homenagem (Voz Emocionante).mp3">
+            <div>
+              <span>Homenagem para família</span>
+              <b>Gospel Romântico</b>
+              <p style="font-size:0.8rem; opacity:0.8; margin-top:4px;">Voz Emocionante · Piano e orquestra</p>
+            </div>
+            <button class="card-play-btn" aria-label="Ouvir Gospel Romântico">▶ Ouvir Amostra</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos">
+      <div class="section-inner">
+        <div class="section-head center">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Escolha seu plano
+          </span>
+          <h2>Escolha como quer surpreender.</h2>
+          <p>Comece com uma prévia acessível ou escolha o pacote completo para entregar a surpresa mais emocionante da vida de alguém.</p>
+        </div>
+        <div class="plans">
+          <article class="plan">
+            <span class="plan-tag">Entrada</span>
+            <h3>Prévia Personalizada</h3>
+            <div class="plan-price">R$9,99</div>
+            <p>Trecho simples para sentir como a história pode virar música.</p>
+            <ul class="plan-features">
+              <li><span class="feat-check">✓</span><span>Trecho de ~30 segundos</span></li>
+              <li><span class="feat-check">✓</span><span>Personalização com nomes</span></li>
+              <li><span class="feat-check">✓</span><span>Entrega via WhatsApp</span></li>
+            </ul>
+          </article>
+          <article class="plan best">
+            <span class="plan-tag">🔥 Mais vendido</span>
+            <h3>Presente Completo</h3>
+            <div class="plan-price">R$97</div>
+            <p>Música inteira, letra, capa personalizada e 1 ajuste de letra incluso.</p>
+            <ul class="plan-features">
+              <li><span class="feat-check">✓</span><span>Música completa (~2-3 min)</span></li>
+              <li><span class="feat-check">✓</span><span>Letra personalizada escrita</span></li>
+              <li><span class="feat-check">✓</span><span>Capa personalizada</span></li>
+              <li><span class="feat-check">✓</span><span>1 revisão de letra inclusa</span></li>
+              <li><span class="feat-check">✓</span><span>Entrega em até 24h</span></li>
+            </ul>
+          </article>
+          <article class="plan">
+            <span class="plan-tag">Premium</span>
+            <h3>Experiência Especial</h3>
+            <div class="plan-price">R$147</div>
+            <p>Pacote completo com prioridade, vídeo com letra e atendimento VIP.</p>
+            <ul class="plan-features">
+              <li><span class="feat-check">✓</span><span>Tudo do Presente Completo</span></li>
+              <li><span class="feat-check">✓</span><span>Vídeo com letra animada</span></li>
+              <li><span class="feat-check">✓</span><span>Entrega prioritária</span></li>
+              <li><span class="feat-check">✓</span><span>2 revisões inclusas</span></li>
+              <li><span class="feat-check">✓</span><span>Atendimento VIP</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULÁRIO / PEDIDO -->
+    <section id="pedido">
+      <div class="section-inner offer">
+        <aside class="price-box">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Comece agora
+          </span>
+          <h2>Comece sua música personalizada</h2>
+          <div class="price">R$9,99 <small>para começar</small></div>
+          <p class="price-original">De R$29,90</p>
+          <p style="margin-top:8px; color: rgba(255,255,255,0.75); font-size: 0.92rem;">Entre com uma prévia acessível e escolha no atendimento se quer a versão completa, premium ou expressa.</p>
+          <ul class="check-list">
+            <li><span class="cl-check">✓</span><span>Prévia ou versão simples personalizada</span></li>
+            <li><span class="cl-check">✓</span><span>Versão completa como upgrade</span></li>
+            <li><span class="cl-check">✓</span><span>Capa e revisão nos planos maiores</span></li>
+            <li><span class="cl-check">✓</span><span>Entrega digital por WhatsApp</span></li>
+            <li><span class="cl-check">✓</span><span>Satisfação garantida ou ajuste grátis</span></li>
+          </ul>
+          <div class="guarantee-badge">
+            <div class="guarantee-icon">🛡️</div>
+            <div class="guarantee-text">
+              <strong>Satisfação garantida</strong>
+              Se a prévia não te emocionar, ajustamos a letra sem custo extra.
+            </div>
+          </div>
+        </aside>
+
+        <form class="briefing" id="briefingForm">
+          <div class="section-head">
+            <h2>Comece pela história. ✍️</h2>
+            <p>Preencha os detalhes e envie o briefing direto no WhatsApp para criar sua música em até 24h.</p>
+          </div>
+          <div class="form-grid">
+            <label>
+              Seu nome
+              <input name="cliente" placeholder="Ex: Rafael" required>
+            </label>
+            <label>
+              Nome da pessoa homenageada
+              <input name="pessoa" placeholder="Ex: Amanda" required>
+            </label>
+            <label>
+              Ocasião
+              <select name="ocasiao">
+                <option>Aniversário de namoro</option>
+                <option>Pedido de casamento</option>
+                <option>Presente para esposa/namorada</option>
+                <option>Presente para marido/namorado</option>
+                <option>Homenagem para mãe/pai</option>
+                <option>Pedido de desculpas</option>
+                <option>Outro momento especial</option>
+              </select>
+            </label>
+            <label>
+              Estilo musical
+              <select name="estilo">
+                <option>Sertanejo romântico</option>
+                <option>Pagode romântico</option>
+                <option>MPB intimista</option>
+                <option>Pop romântico</option>
+                <option>Gospel</option>
+                <option>Forró romântico</option>
+              </select>
+            </label>
+            <label class="full">
+              Conte a história de vocês
+              <textarea name="historia" placeholder="Como se conheceram, uma lembrança marcante, apelidos carinhosos, frases internas, o que você admira nela/nele..." required></textarea>
+            </label>
+            <label class="full">
+              O que não pode faltar na letra?
+              <textarea name="detalhes" placeholder="Nomes, datas, lugares, filhos, planos, promessas, pedido especial..."></textarea>
+            </label>
+          </div>
+          <button class="btn btn-whatsapp btn-primary-lg" type="submit" style="width:100%; margin-top: 18px;">💬 Enviar briefing no WhatsApp</button>
+          <p class="form-note">Ao enviar, você será direcionado ao WhatsApp com a mensagem pronta. Pagamento e prazo confirmados no atendimento.</p>
+          <div class="form-security">
+            <span><span class="sec-icon">🔒</span> Dados seguros</span>
+            <span><span class="sec-icon">⚡</span> Resposta em minutos</span>
+            <span><span class="sec-icon">✓</span> Sem compromisso</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="proof">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Quem já pediu aprovou
+          </span>
+          <h2>O tipo de reação que vende sozinha.</h2>
+          <p>Veja o que nossos clientes dizem sobre a experiência de presentear com uma música personalizada.</p>
+        </div>
+        <div class="quotes">
+          <blockquote>
+            <div class="testimonial-head">
+              <img class="avatar" src="avatar-marina.jpg" alt="Foto de Marina S." loading="lazy">
+              <div>
+                <span class="who">Marina S.</span>
+                <span class="who-detail">Presente de aniversário</span>
+                <span class="stars">★★★★★</span>
+              </div>
+            </div>
+            <p>"Eu mandei nossa história e veio uma música com detalhes que pareciam escritos por alguém que conhece a gente. Meu marido chorou ouvindo."</p>
+            <footer>Sertanejo romântico · Entrega em 18h</footer>
+          </blockquote>
+          <blockquote>
+            <div class="testimonial-head">
+              <img class="avatar" src="avatar-rafael.jpg" alt="Foto de Rafael A." loading="lazy">
+              <div>
+                <span class="who">Rafael A.</span>
+                <span class="who-detail">Pedido de casamento</span>
+                <span class="stars">★★★★★</span>
+              </div>
+            </div>
+            <p>"Comprei achando que seria simples, mas a surpresa ficou muito mais bonita do que um texto ou uma cesta comum. Ela disse sim antes da música acabar."</p>
+            <footer>MPB intimista · Entrega em 12h</footer>
+          </blockquote>
+          <blockquote>
+            <div class="testimonial-head">
+              <img class="avatar" src="avatar-camila.jpg" alt="Foto de Camila P." loading="lazy">
+              <div>
+                <span class="who">Camila P.</span>
+                <span class="who-detail">Homenagem ao pai</span>
+                <span class="stars">★★★★★</span>
+              </div>
+            </div>
+            <p>"A parte mais forte foi ouvir o nome do meu pai, a data e uma lembrança nossa no refrão. A família inteira se emocionou. Valeu cada centavo."</p>
+            <footer>Pagode romântico · Entrega em 22h</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Tire suas dúvidas
+          </span>
+          <h2>Perguntas frequentes</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>A música é feita com inteligência artificial?</summary>
+            <p>Sim. Você envia a história e os detalhes, e a composição é gerada com IA em conta com permissão comercial. Cada letra é revisada e ajustada antes da entrega para garantir qualidade profissional.</p>
+          </details>
+          <details>
+            <summary>Posso escolher o estilo musical?</summary>
+            <p>Sim. Os estilos disponíveis são os que funcionam melhor para presente emocional: sertanejo romântico, pagode, MPB, pop, gospel e forró. Se precisar de algo diferente, converse no WhatsApp.</p>
+          </details>
+          <details>
+            <summary>Quanto tempo leva para receber?</summary>
+            <p>O prazo padrão é de até 24 horas após confirmação dos detalhes e pagamento. Em datas urgentes, temos entrega expressa. A prévia de R$9,99 costuma sair em poucas horas.</p>
+          </details>
+          <details>
+            <summary>Posso pedir ajuste na letra?</summary>
+            <p>Sim. Os pacotes completos incluem ajustes de letra sem custo adicional. Mudança de estilo, voz ou nova versão pode ter valor adicional.</p>
+          </details>
+          <details>
+            <summary>E se eu não gostar do resultado?</summary>
+            <p>Oferecemos ajustes inclusos em todos os pacotes. Na prévia de R$9,99, se não gostar do trecho, ajustamos a letra gratuitamente. Nosso compromisso é que você se emocione com o resultado.</p>
+          </details>
+          <details>
+            <summary>Posso usar a música em redes sociais?</summary>
+            <p>Sim! A música é criada em conta com permissão comercial e é de uso exclusivo seu. Pode publicar no Instagram, TikTok, YouTube ou onde preferir.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <div class="section-inner">
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Não deixe para depois
+        </span>
+        <h2>A próxima data especial está chegando. A música perfeita começa agora.</h2>
+        <p>Por apenas R$9,99 você testa a ideia sem risco. Se a emoção for real, escolha o pacote completo.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-primary-lg" href="#pedido">🎵 Quero criar minha música agora</a>
+        </div>
+        <div class="cta-countdown">
+          🕐 Oferta de lançamento expira em: <span class="countdown-timer" id="countdown">23:59:59</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <span class="footer-brand">Nexo Love AI — presentes personalizados com IA</span>
+        <span>Produto digital criado com IA. Não imitamos vozes de artistas. Uso comercial autorizado.</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- FLOATING WHATSAPP -->
+  <a class="float-whatsapp" href="https://wa.me/5585997546957?text=Oi%2C%20quero%20saber%20mais%20sobre%20a%20m%C3%BAsica%20personalizada!" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <div class="float-whatsapp-pulse"></div>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+
+  <script>
+    // WhatsApp Form Handler
+    const WHATSAPP_NUMBER = "5585997546957";
+    const form = document.querySelector("#briefingForm");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const message = [
+        "🎵 *Quero criar uma música personalizada!*",
+        "",
+        `👤 *Meu nome:* ${data.get("cliente")}`,
+        `💝 *Nome da pessoa:* ${data.get("pessoa")}`,
+        `🎯 *Ocasião:* ${data.get("ocasiao")}`,
+        `🎶 *Estilo:* ${data.get("estilo")}`,
+        "",
+        `📖 *História:* ${data.get("historia")}`,
+        "",
+        `✨ *Detalhes importantes:* ${data.get("detalhes") || "Vou detalhar na conversa."}`
+      ].join("\n");
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    // Countdown Timer
+    function startCountdown() {
+      const countdownEl = document.getElementById('countdown');
+      if (!countdownEl) return;
+
+      // Set to end of today
+      const now = new Date();
+      const end = new Date(now);
+      end.setHours(23, 59, 59, 999);
+
+      function update() {
+        const current = new Date();
+        let diff = end - current;
+        if (diff <= 0) {
+          // Reset for next day
+          end.setDate(end.getDate() + 1);
+          diff = end - current;
+        }
+        const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+        const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        countdownEl.textContent = `${h}:${m}:${s}`;
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    startCountdown();
+
+    // Smooth reveal on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card, .plan, blockquote, .example, details, .premium-stat').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
+    });
+    // Audio Player System
+    let currentAudio = null;
+    let currentBtn = null;
+
+    // Hero Audio Player
+    const heroPlayBtn = document.querySelector('.hero .play-btn');
+    const heroAudioSrc = 'audios/Sertanejo Romântico (Voz Masculina).mp3';
+
+    if (heroPlayBtn) {
+      heroPlayBtn.addEventListener('click', () => {
+        toggleAudio(heroAudioSrc, heroPlayBtn);
+      });
+    }
+
+    // Audio Cards
+    document.querySelectorAll('.audio-card').forEach(card => {
+      const btn = card.querySelector('.card-play-btn');
+      const src = card.getAttribute('data-src');
+      
+      if (btn && src) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleAudio(src, btn);
+        });
+      }
+    });
+
+    function toggleAudio(src, btn) {
+      if (currentAudio && currentAudio.src.endsWith(encodeURI(src))) {
+        if (currentAudio.paused) {
+          currentAudio.play();
+          updateBtnState(btn, true);
+        } else {
+          currentAudio.pause();
+          updateBtnState(btn, false);
+        }
+        return;
+      }
+
+      if (currentAudio) {
+        currentAudio.pause();
+        if (currentBtn) updateBtnState(currentBtn, false);
+      }
+
+      currentAudio = new Audio(src);
+      currentBtn = btn;
+
+      currentAudio.play().then(() => {
+        updateBtnState(btn, true);
+      }).catch(err => {
+        console.log("Audio play error:", err);
+      });
+
+      currentAudio.addEventListener('ended', () => {
+        updateBtnState(btn, false);
+        currentAudio = null;
+        currentBtn = null;
+      });
+    }
+
+    function updateBtnState(btn, isPlaying) {
+      if (btn.classList.contains('play-btn')) {
+        btn.textContent = isPlaying ? '❚❚' : '▶';
+      } else {
+        btn.textContent = isPlaying ? '❚❚ Pausar' : '▶ Ouvir Amostra';
+        btn.style.background = isPlaying ? 'linear-gradient(135deg, #ef4444, #b91c1c)' : '';
+      }
+    }
+  </script>
+</body>
+</html>
